@@ -1,4 +1,4 @@
-package ru.innopolis.stc21.web;
+package ru.innopolis.stc21.med.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
