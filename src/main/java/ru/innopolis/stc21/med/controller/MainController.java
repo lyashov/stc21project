@@ -18,7 +18,7 @@ public class MainController {
     public String hello(Model model,
         @RequestParam(value="name", required=false, defaultValue="World") String name) {
         model.addAttribute("name", name);
-        System.out.printf("test");
+        System.out.printf("hi");
         return "hello";
 
     }
