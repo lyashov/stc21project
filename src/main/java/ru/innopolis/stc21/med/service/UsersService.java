@@ -1,7 +1,9 @@
 package ru.innopolis.stc21.med.service;
 
+import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.innopolis.stc21.med.configs.Role;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.UsersEntity;
 import ru.innopolis.stc21.med.repository.UsersRepository;
@@ -32,16 +34,33 @@ public class UsersService {
         if(user.isPresent()) {
             return user.get();
         } else {
-            throw new RecordNotFoundException("No doctor record exist for given id");
+            throw new RecordNotFoundException("No user record exist for given id");
         }
     }
 
-    public UsersEntity create(String login, String password) {
-        UsersEntity entityNew = new UsersEntity();
-        entityNew.setLogin(login);
-        entityNew.setPassword(password);
-        entityNew.setIs_doctor(false);
-        return repository.save(entityNew);
+    public UsersEntity getUserByName(String username) throws RecordNotFoundException
+    {
+        Optional<UsersEntity> user = Optional.ofNullable(repository.findByUsername(username));
+
+        if(user.isPresent()) {
+            return user.get();
+        } else {
+            throw new RecordNotFoundException("No user record exist for given id");
+        }
+    }
+
+    public UsersEntity create(String username, String password) {
+            UsersEntity entityNew = new UsersEntity();
+            //entityNew.setId(4L);
+            entityNew.setActive(true);
+            entityNew.setUsername(username);
+            entityNew.setPassword(password);
+            entityNew.setAuthorities(ImmutableList.of(Role.PACIENT));
+            entityNew.setAccountNonExpired(true);
+            entityNew.setAccountNonLocked(true);
+            entityNew.setEnabled(true);
+            entityNew.setCredentialsNonExpired(true);
+            return repository.save(entityNew);
     }
 
     public void save(UsersEntity usersEntity)
