@@ -11,6 +11,7 @@ import ru.innopolis.stc21.med.repository.MedicalHistoryRepository;
 import ru.innopolis.stc21.med.repository.UsersRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,28 +30,16 @@ public class MedicalHistoryService {
         }
     }
 
-   /* public UsersEntity create(String username, String password,
-                              String first_name, String second_name, String last_name,
-                              String email, String snils) {
-            UsersEntity entityNew = new UsersEntity();
-            //`entityNew.setId(4L);
-            entityNew.setActive(true);
-            entityNew.setUsername(username);
-            entityNew.setPassword(password);
-            entityNew.setAuthorities(ImmutableList.of(Role.PACIENT));
-            entityNew.setAccountNonExpired(true);
-            entityNew.setAccountNonLocked(true);
-            entityNew.setEnabled(true);
-            entityNew.setCredentialsNonExpired(true);
-            entityNew.setFirst_name(first_name);
-            entityNew.setSecond_name(second_name);
-            entityNew.setLast_name(last_name);
-            entityNew.setEmail(email);
-            entityNew.setSnils(snils);
+   public MedicalHistoryEntity create(Date date, UsersEntity usersEntity) {
+            MedicalHistoryEntity entityNew = new MedicalHistoryEntity();
+            entityNew.setUser(usersEntity);
+            entityNew.setDate_visit(date);
+            entityNew.setNeiro_diagtose(" ");
+            entityNew.setPercent((byte)0);
             return repository.save(entityNew);
     }
 
-    public void save(UsersEntity usersEntity)
+   /* public void save(UsersEntity usersEntity)
     {
         repository.save(usersEntity);
     }

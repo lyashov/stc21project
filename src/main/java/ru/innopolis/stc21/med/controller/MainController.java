@@ -16,6 +16,9 @@ import ru.innopolis.stc21.med.service.UsersService;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -33,6 +36,17 @@ public class MainController {
         return auth.getName();
     }
 
+    @GetMapping({"/"})
+    public String historymain(Model model,
+                          @RequestParam(value="name", required=false, defaultValue="World") String name) throws RecordNotFoundException {
+
+        UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
+        List<MedicalHistoryEntity> medHistories = medicalHistoryService.getAllByUser(currentUser);
+
+        model.addAttribute("medHistories", medHistories);
+        return "history";
+    }
+
     @GetMapping({"/history"})
     public String history(Model model,
                         @RequestParam(value="name", required=false, defaultValue="World") String name) throws RecordNotFoundException {
@@ -44,20 +58,18 @@ public class MainController {
         return "history";
     }
 
-
-
-    @GetMapping({"/hello"})
+    @GetMapping({"/addRequest"})
     public String hello(Model model,
         @RequestParam(value="name", required=false, defaultValue="World") String name) {
-        model.addAttribute("name", name);
-        return "hello";
+       // model.addAttribute("name", name);
+        return "addRequest";
     }
 
 
-    @PostMapping({"/hello"})
+    @PostMapping({"/addRequest"})
     public String hello(Model model,
                         @RequestParam(value="name", required=false, defaultValue="World") String name,
-                        @RequestParam("file") MultipartFile file) throws IOException {
+                        @RequestParam("file") MultipartFile file) throws IOException, RecordNotFoundException {
 
         if (!file.isEmpty()) {
             String imgPath = System.getProperty("user.dir").concat(uploadPath);
@@ -65,10 +77,25 @@ public class MainController {
             if (!uploadDir.exists()){
                 uploadDir.mkdir();
             }
-            String fullPath = imgPath + "/" + file.getOriginalFilename();
+
+            UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
+
+            MedicalHistoryEntity mHistory = medicalHistoryService.create(new Date(),currentUser);
+
+            String fileName = file.getOriginalFilename();
+            String extension = "";
+
+            int i = fileName.lastIndexOf('.');
+            if (i > 0) {
+                extension = fileName.substring(i+1);
+            }
+
+            String fullPath = imgPath + "/" + mHistory.getId() + "." + extension; //file.getOriginalFilename();
             file.transferTo(new File(fullPath));
         }
+
+
         model.addAttribute("name", "Ура!!! файл " + file.getOriginalFilename() + " добавлен на сервер!");
-        return "hello";
+        return "addRequest";
     }
 }
