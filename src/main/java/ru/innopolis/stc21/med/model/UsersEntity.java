@@ -54,7 +54,7 @@ public class UsersEntity implements UserDetails {
 
     @Override
     public String toString() {
-        return "id = " + this.id + " , login = " + this.username;
+        return this.first_name + " " + this.second_name + " " + this.last_name;
     }
 
 

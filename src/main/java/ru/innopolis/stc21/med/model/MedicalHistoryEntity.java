@@ -38,6 +38,4 @@ public class MedicalHistoryEntity{
         return "id = " + this.id + " , login = " + this.neiro_diagtose;
     }
 
-
-
 }

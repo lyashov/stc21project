@@ -1,17 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello!</title>
-    <link href="/css/main.css" rel="stylesheet">
-</head>
-<body>
+<#import "parts/common.ftl" as c>
+
+<@c.page>
+
 <form method="post" enctype="multipart/form-data">
-    <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <h2 class="hello-title">Hello !</h2>
-    <input type="file" name="file">
-    <input type="submit" name="submit" value="UPLOAD FILE">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Дата обращения</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Нейро-диагноз</th>
+            <th scope="col">Процент точности</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <#list medHistories as history>
+        <tr>
+            <th scope="row">1</th>
+            <td>${history.date_visit}</td>
+            <td>${history.user}</td>
+            <td>${history.neiro_diagtose}</td>
+            <td>${history.percent}%</td>
+        </tr>
+        </#list>
+        </tbody>
+    </table>
 </form>
-<script src="/js/main.js"></script>
-</body>
-</html>
+
+</@c.page>

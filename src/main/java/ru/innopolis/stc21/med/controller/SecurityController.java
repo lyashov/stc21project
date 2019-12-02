@@ -27,23 +27,7 @@ public class SecurityController {
     @Autowired
     private UsersService usersService;
 
-    @GetMapping("/medhistory")
-    public String medhistory() {
-        //  UsersEntity userFromDB = usersService.getUserByName(usersEntity.getUsername());
-        //   if(userFromDB != null){
-        // model.
-        //   }
-        return "medhistory";
-    }
 
-    @GetMapping("/history")
-    public String history() {
-        //  UsersEntity userFromDB = usersService.getUserByName(usersEntity.getUsername());
-        //   if(userFromDB != null){
-        // model.
-        //   }
-        return "history";
-    }
 
     @GetMapping("/registration")
     public String registration() {
