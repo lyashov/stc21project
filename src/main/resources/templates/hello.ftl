@@ -7,6 +7,7 @@
 </head>
 <body>
     <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <h2 class="hello-title">Hello ${name}!</h2>
         <input type="file" name="file">
         <input type="submit" name="submit" value="UPLOAD FILE">

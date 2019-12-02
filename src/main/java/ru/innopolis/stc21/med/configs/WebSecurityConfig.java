@@ -19,12 +19,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
 
-
     protected void configure(HttpSecurity http) throws Exception {
         // .anyRequest().hasRole("admin")
         http
                 .authorizeRequests()
-                .antMatchers("/registration", "/registration").permitAll()
+                .antMatchers("/registration",  "/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -33,7 +32,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
-
     }
 
     @Override

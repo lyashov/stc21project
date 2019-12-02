@@ -21,6 +21,24 @@ public class UsersEntity implements UserDetails {
     @Column(name="password", nullable=false, length=100)
     private String password;
 
+    @Column(name="first_name", nullable=false, length=200)
+    private String first_name;
+
+    @Column(name="second_name", nullable=false, length=200)
+    private String second_name;
+
+    @Column(name="last_name", nullable=false, length=200)
+    private String last_name;
+
+    @Column(name="email", nullable=false, length=100)
+    private String email;
+
+    @Column(name="snils", nullable=false, length=100)
+    private String snils;
+   // @OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "pacient_info_id", referencedColumnName = "id")
+    //private PacientInfoEntity pacientInfo;
+
     @Transient
     private Boolean active;
     @Transient

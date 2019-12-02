@@ -14,7 +14,7 @@ public class MainController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    @GetMapping({"/", "/hello"})
+    @GetMapping({"/hello"})
     public String hello(Model model,
         @RequestParam(value="name", required=false, defaultValue="World") String name) {
         model.addAttribute("name", name);
@@ -24,7 +24,7 @@ public class MainController {
     }
 
 
-    @PostMapping({"/", "/hello"})
+    @PostMapping({"/hello"})
     public String hello(Model model,
                         @RequestParam(value="name", required=false, defaultValue="World") String name,
                         @RequestParam("file") MultipartFile file) throws IOException {

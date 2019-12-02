@@ -49,9 +49,11 @@ public class UsersService {
         }
     }
 
-    public UsersEntity create(String username, String password) {
+    public UsersEntity create(String username, String password,
+                              String first_name, String second_name, String last_name,
+                              String email, String snils) {
             UsersEntity entityNew = new UsersEntity();
-            //entityNew.setId(4L);
+            //`entityNew.setId(4L);
             entityNew.setActive(true);
             entityNew.setUsername(username);
             entityNew.setPassword(password);
@@ -60,6 +62,11 @@ public class UsersService {
             entityNew.setAccountNonLocked(true);
             entityNew.setEnabled(true);
             entityNew.setCredentialsNonExpired(true);
+            entityNew.setFirst_name(first_name);
+            entityNew.setSecond_name(second_name);
+            entityNew.setLast_name(last_name);
+            entityNew.setEmail(email);
+            entityNew.setSnils(snils);
             return repository.save(entityNew);
     }
 

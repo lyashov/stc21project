@@ -16,9 +16,9 @@ public class RESTUserController {
     UsersService usersService;
 
 
-    @RequestMapping("/")
+    @RequestMapping("/test")
     public UsersEntity greeting(@RequestParam(value="name", defaultValue="World") String name) throws RecordNotFoundException {
-        UsersEntity userTest = usersService.create("Vasya", "123");
+       // UsersEntity userTest = usersService.create("Vasya", "123", "snils 123");
         return usersService.getUserById(1L);
     }
 }
