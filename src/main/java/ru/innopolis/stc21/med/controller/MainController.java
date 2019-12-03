@@ -42,7 +42,6 @@ public class MainController {
 
         UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
         List<MedicalHistoryEntity> medHistories = medicalHistoryService.getAllByUser(currentUser);
-        //System.out.println("");
         model.addAttribute("medHistories", medHistories);
         return "history";
     }

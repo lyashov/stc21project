@@ -6,7 +6,6 @@ import ru.innopolis.stc21.med.configs.Role;
 
 import javax.persistence.*;
 import java.util.List;
-
 @Data
 @Entity
 @Table(name="USERS")
