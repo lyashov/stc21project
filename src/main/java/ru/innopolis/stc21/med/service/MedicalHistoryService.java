@@ -35,7 +35,7 @@ public class MedicalHistoryService {
             entityNew.setUser(usersEntity);
             entityNew.setDate_visit(date);
             entityNew.setNeiro_diagtose(" ");
-            entityNew.setPercent((byte)0);
+            entityNew.setAccuracy(" ");
             return repository.save(entityNew);
     }
 

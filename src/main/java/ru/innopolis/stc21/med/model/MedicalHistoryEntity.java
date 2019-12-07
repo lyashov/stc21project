@@ -26,8 +26,8 @@ public class MedicalHistoryEntity{
     @Column(name="neiro_diagtose", nullable=false, length=200)
     private String neiro_diagtose;
 
-    @Column(name="percent", nullable=false)
-    private Byte percent;
+    @Column(name="accuracy", nullable=false)
+    private String accuracy;
 
    // @OneToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "pacient_info_id", referencedColumnName = "id")
