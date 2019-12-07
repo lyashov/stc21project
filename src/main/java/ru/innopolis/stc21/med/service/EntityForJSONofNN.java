@@ -13,7 +13,4 @@ public class EntityForJSONofNN {
         this.result = result;
         this.accuracy = accuracy;
     }
-
-    public EntityForJSONofNN() {
-    }
 }

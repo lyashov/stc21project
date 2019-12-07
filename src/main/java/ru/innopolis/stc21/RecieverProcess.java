@@ -22,9 +22,9 @@ public class RecieverProcess {
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://ec2-174-129-254-235.compute-1.amazonaws.com:5432/df45v8tae7v2n4");
-        dataSource.setUsername("bcrdfyygoqyztw");
-        dataSource.setPassword("09ff62cf764c10ddfd021aac651e301f32645e4365cb1caf5a4f958b18fd58ac");
+        dataSource.setUrl("jdbc:postgresql://31.131.25.185:5432/projectdb");
+        dataSource.setUsername("winner");
+        dataSource.setPassword("ySFG1YRXZm3Pu5V");
         return dataSource;
     }
 
