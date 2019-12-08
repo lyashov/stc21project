@@ -24,7 +24,7 @@ public class RecieverProcess {
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://31.131.25.185:5432/projectdb");
         dataSource.setUsername("winner");
-        dataSource.setPassword("ySFG1YRXZm3Pu5V");
+        dataSource.setPassword("ySFG1YRXZm3Pu5VF");
         return dataSource;
     }
 

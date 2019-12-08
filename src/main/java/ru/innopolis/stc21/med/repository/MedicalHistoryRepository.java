@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface MedicalHistoryRepository extends JpaRepository<MedicalHistoryEntity, Long> {
-    List<MedicalHistoryEntity> getAllByUser(UsersEntity usersEntity);
+    List<MedicalHistoryEntity> getAllByUserOrderByIdDesc(UsersEntity usersEntity);
 }
