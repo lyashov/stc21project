@@ -40,7 +40,7 @@
                     ${history.accuracy}%</td>
                 <#else>
                     <div class="spinner-border text-danger" role="status">
-                        <span class="sr-only">Обработка нейросетью...</span>
+                        <span class="sr-only">Обработка нейросетью..</span>
                     </div>
                 </#if>
             <td>
