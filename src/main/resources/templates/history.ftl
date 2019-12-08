@@ -7,7 +7,7 @@
         <thead class="thead-dark">
         <tr>
 <#--            <th scope="col">№</th>-->
-            <th scope="col">Дата обращения</th>
+            <th scope="col">Дата обращен vsdvcSDcSdcdия</th>
             <th scope="col">ID</th>
             <th scope="col">ФИО</th>
             <th scope="col">Нейро-диагноз</th>
