@@ -40,13 +40,13 @@ public class SecurityController {
 
     @PostMapping("/registration")
     public String addUser(
-            @RequestParam(name="username", required=false, defaultValue="username") String username,
-            @RequestParam(name="password", required=false, defaultValue="password") String password,
-            @RequestParam(name="first_name ", required=false, defaultValue="first_name ") String first_name ,
-            @RequestParam(name="second_name", required=false, defaultValue="second_name") String second_name,
-            @RequestParam(name="last_name", required=false, defaultValue="username") String last_name,
-            @RequestParam(name="email", required=false, defaultValue="password") String email,
-            @RequestParam(name="snils", required=false, defaultValue="password") String snils,
+            @RequestParam(name="username", required=false, defaultValue="") String username,
+            @RequestParam(name="password", required=false, defaultValue="") String password,
+            @RequestParam(name="first_name", required=false, defaultValue="") String first_name ,
+            @RequestParam(name="second_name", required=false, defaultValue="") String second_name,
+            @RequestParam(name="last_name", required=false, defaultValue="") String last_name,
+            @RequestParam(name="email", required=false, defaultValue="") String email,
+            @RequestParam(name="snils", required=false, defaultValue="") String snils,
                           Model model) throws RecordNotFoundException {
 
         UsersEntity usersEntity = usersRepository.findByUsername(username);
