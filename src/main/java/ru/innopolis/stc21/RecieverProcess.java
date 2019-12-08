@@ -2,12 +2,13 @@ package ru.innopolis.stc21;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.google.gson.Gson;
 import com.rabbitmq.client.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import ru.innopolis.stc21.med.service.EntityForJSONofNN;
+import ru.innopolis.stc21.med.service.JsonUser;
 
 import javax.sql.DataSource;
 import java.io.*;
@@ -24,22 +25,22 @@ public class RecieverProcess {
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://31.131.25.185:5432/projectdb");
         dataSource.setUsername("winner");
-        dataSource.setPassword("ySFG1YRXZm3Pu5VF");
+        dataSource.setPassword("ySFG1YRXZm3Pu5V");
         return dataSource;
     }
 
     public void putToBase(String message) throws SQLException, IOException {
         Reader reader = new StringReader(message);
-        ObjectMapper mapper = new ObjectMapper();
-        EntityForJSONofNN entityForJSON = mapper.readValue(reader, EntityForJSONofNN.class);
+        Gson g = new Gson();
+        JsonUser jsonUser = g.fromJson(message, JsonUser.class);
 
         Long id;
         String result;
         String accuracy;
 
-        id = entityForJSON.getId();
-        result = entityForJSON.getResult();
-        accuracy = entityForJSON.getAccuracy();
+        id = jsonUser.getId();
+        result = jsonUser.getResult();
+        accuracy = jsonUser.getAccuracy();
 
         try (java.sql.Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE medical_history SET neiro_diagtose=?, accuracy=? WHERE id=?")) {

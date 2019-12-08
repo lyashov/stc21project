@@ -118,10 +118,10 @@ public class MainController {
         Long iid=0L;
         String fullPath = "";
         if (!file.isEmpty()) {
-            //String imgPath = System.getProperty("user.dir").concat(uploadPath);
+            String imgPath = System.getProperty("user.dir").concat(uploadPath);
             //URL imgPath = getClass().getResource("/static/uploads");
-            File imgPath = ResourceUtils.getFile("classpath:uploads");
-            File uploadDir = imgPath;
+           // File imgPath = ResourceUtils.getFile("classpath:uploads");
+            File uploadDir = new File("imgPath");
             if (!uploadDir.exists()){
                 uploadDir.mkdir();
             }
@@ -132,7 +132,7 @@ public class MainController {
 
             String fileName = file.getOriginalFilename();
             String extension = "";
-
+    
             int i = fileName.lastIndexOf('.');
             if (i > 0) {
                 extension = fileName.substring(i+1);
