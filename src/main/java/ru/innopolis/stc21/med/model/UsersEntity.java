@@ -34,6 +34,9 @@ public class UsersEntity implements UserDetails {
 
     @Column(name="snils", nullable=false, length=100)
     private String snils;
+
+    //@Column(name="snils", nullable=false, length=100)
+    //private byte[] img;
    // @OneToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "pacient_info_id", referencedColumnName = "id")
     //private PacientInfoEntity pacientInfo;

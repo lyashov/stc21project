@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
@@ -19,9 +21,8 @@ import ru.innopolis.stc21.med.service.MedicalHistoryService;
 import ru.innopolis.stc21.med.service.UsersService;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -44,11 +45,9 @@ public class MainController {
         return auth.getName();
     }
 
-
-
     @GetMapping({"/"})
     public String historymain(Model model,
-                          @RequestParam(value="name", required=false, defaultValue="World") String name) throws RecordNotFoundException {
+                          @RequestParam(value="name", required=false, defaultValue="World") String name) throws RecordNotFoundException, FileNotFoundException {
 
         UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
         List<MedicalHistoryEntity> medHistories = medicalHistoryService.getAllByUser(currentUser);
@@ -59,13 +58,22 @@ public class MainController {
 
     @GetMapping({"/history"})
     public String history(Model model,
-                        @RequestParam(value="name", required=false, defaultValue="World") String name) throws RecordNotFoundException {
+                        @RequestParam(value="name", required=false, defaultValue="World") String name) throws RecordNotFoundException, FileNotFoundException {
 
         UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
         List<MedicalHistoryEntity> medHistories = medicalHistoryService.getAllByUser(currentUser);
 
         model.addAttribute("medHistories", medHistories);
         return "history";
+    }
+
+    @PostMapping({"/history"})
+    public String historyPost(Model model,
+                              @RequestBody MultiValueMap<String, String> formData
+                              ) throws RecordNotFoundException {
+
+         formData.toSingleValueMap();
+        return "redirect:/history";
     }
 
     @GetMapping({"/addRequest"})
@@ -101,7 +109,9 @@ public class MainController {
         Long iid=0L;
         String fullPath = "";
         if (!file.isEmpty()) {
-            String imgPath = System.getProperty("user.dir").concat(uploadPath);
+            String imgPath = uploadPath;
+            //URL imgPath = getClass().getResource("/static/uploads");
+            //File imgPath = ResourceUtils.getFile("classpath:uploads");
             File uploadDir = new File(imgPath);
             if (!uploadDir.exists()){
                 uploadDir.mkdir();
@@ -113,7 +123,7 @@ public class MainController {
 
             String fileName = file.getOriginalFilename();
             String extension = "";
-
+    
             int i = fileName.lastIndexOf('.');
             if (i > 0) {
                 extension = fileName.substring(i+1);
@@ -132,10 +142,6 @@ public class MainController {
         obj.put("id", String.valueOf(iid));
         obj.put("picture", encodedString);
         sender(obj.toJSONString());
-
-        System.out.println(obj);
-
-        model.addAttribute("name", "Ура!!! файл " + file.getOriginalFilename() + " добавлен на сервер!" + name);
-        return "addRequest";
+        return "redirect:/history";
     }
 }

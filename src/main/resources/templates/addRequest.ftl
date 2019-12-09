@@ -4,6 +4,7 @@
     <form method="post" enctype="multipart/form-data">
         <#if name??>
             ${name}
+            <img src="/img/${imgname}">
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <div class="container">

@@ -22,7 +22,7 @@ public class MedicalHistoryService {
 
     public List<MedicalHistoryEntity> getAllByUser(UsersEntity usersEntity)
     {
-        List<MedicalHistoryEntity> historyList = repository.getAllByUser(usersEntity);
+        List<MedicalHistoryEntity> historyList = repository.getAllByUserOrderByIdDesc(usersEntity);
         if(historyList.size() > 0) {
             return historyList;
         } else {
