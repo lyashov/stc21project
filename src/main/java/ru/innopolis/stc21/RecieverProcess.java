@@ -23,7 +23,7 @@ public class RecieverProcess {
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://31.131.25.185:5432/projectdb");
+        dataSource.setUrl("jdbc:postgresql://medbrat.ml:5432/projectdb");
         dataSource.setUsername("winner");
         dataSource.setPassword("ySFG1YRXZm3Pu5V");
         return dataSource;
@@ -44,10 +44,12 @@ public class RecieverProcess {
 
         try (java.sql.Connection connection = getDataSource().getConnection()) {
             try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE medical_history SET neiro_diagtose=?, accuracy=? WHERE id=?")) {
+                connection.setAutoCommit(false);
                 preparedStatement.setString(1, result);
                 preparedStatement.setString(2, accuracy);
                 preparedStatement.setLong(3, id);
                 preparedStatement.executeUpdate();
+                connection.commit();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

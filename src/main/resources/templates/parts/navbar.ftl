@@ -13,7 +13,7 @@
                 <a class="nav-link" href="/addRequest">Создать обращение</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Создать обращение</a>
+                <a class="nav-link" href="logout">Выход</a>
             </li>
 
         </ul>

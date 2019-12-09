@@ -23,9 +23,6 @@ import ru.innopolis.stc21.med.service.UsersService;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -48,8 +45,6 @@ public class MainController {
         return auth.getName();
     }
 
-
-
     @GetMapping({"/"})
     public String historymain(Model model,
                           @RequestParam(value="name", required=false, defaultValue="World") String name) throws RecordNotFoundException, FileNotFoundException {
@@ -58,8 +53,6 @@ public class MainController {
         List<MedicalHistoryEntity> medHistories = medicalHistoryService.getAllByUser(currentUser);
         //System.out.println("");
         model.addAttribute("medHistories", medHistories);
-        String filePath = ResourceUtils.getURL("classpath:uploads").getPath();
-        model.addAttribute("filePath", filePath);
         return "history";
     }
 
@@ -71,8 +64,6 @@ public class MainController {
         List<MedicalHistoryEntity> medHistories = medicalHistoryService.getAllByUser(currentUser);
 
         model.addAttribute("medHistories", medHistories);
-        String filePath = ResourceUtils.getURL("classpath:uploads").getPath();
-        model.addAttribute("filePath", filePath);
         return "history";
     }
 
@@ -118,10 +109,10 @@ public class MainController {
         Long iid=0L;
         String fullPath = "";
         if (!file.isEmpty()) {
-            String imgPath = System.getProperty("user.dir").concat(uploadPath);
+            String imgPath = uploadPath;
             //URL imgPath = getClass().getResource("/static/uploads");
-           // File imgPath = ResourceUtils.getFile("classpath:uploads");
-            File uploadDir = new File("imgPath");
+            //File imgPath = ResourceUtils.getFile("classpath:uploads");
+            File uploadDir = new File(imgPath);
             if (!uploadDir.exists()){
                 uploadDir.mkdir();
             }
