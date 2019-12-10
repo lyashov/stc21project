@@ -22,7 +22,6 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <#list medHistories as history>
         <tr>
-<#--            <th scope="row">1</th>-->
             <td>${history.date_visit}</td>
             <td>${history.id}</td>
             <td>${history.user}</td>
@@ -63,6 +62,7 @@
         </#list>
 
         <tr>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
