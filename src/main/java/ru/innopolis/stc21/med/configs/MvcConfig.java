@@ -12,6 +12,12 @@ public class MvcConfig implements WebMvcConfigurer {
     @Value("${upload.path}")
     private String upPath;
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/photo/**").
+                addResourceLocations("file://" + upPath + "/");
+    }
+
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("history");
         registry.addViewController("/history").setViewName("history");
@@ -20,15 +26,26 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/registration").setViewName("registration");
     }
 
-    @Override
+  /*  @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-       // registry.addResourceHandler("/resources/**").
-         //       addResourceLocations("/resources/", "/img/**", "file:///tmp/");
 
 
-        registry.addResourceHandler("/img/**").addResourceLocations("file:/tmp/");
+            registry.addResourceHandler("/**").addResourceLocations(
+                    CLASSPATH_RESOURCE_LOCATIONS);
+
+        registry.addResourceHandler("/webjars/**").addResourceLocations(
+                "classpath:/META-INF/resources/webjars/");
+
+        registry.addResourceHandler("/img/**").addResourceLocations("file:///tmp/");
+
+*//*
+        registry.addResourceHandler("/resources/**").
+                addResourceLocations("/resources/");
 
 
+        registry.addResourceHandler("/img/**").
+                addResourceLocations("file:///tmp/");*//*
 
-    }
+        //super.addResourceHandlers(registry);
+    }*/
 }

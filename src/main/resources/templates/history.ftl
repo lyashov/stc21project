@@ -42,7 +42,7 @@
                     </div>
                     </#if>
                     <td>
-                        <img src="img/${history.id}.png">
+                        <img src="photo/${history.id}.png">
                         <#--                <img src="img/1.png">-->
                     </td>
                     <td>
@@ -61,22 +61,41 @@
                     </td>
                 </tr>
             </#list>
+                </#if>
+            <td>
+                <img src="photo/${history.id}.png">
+<#--                <img src="img/1.png">-->
+            </td>
+            <td>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" name="customDel${history.id}" id="customDel${history.id}">
+                    <label class="custom-control-label" for="customDel${history.id}">Удалить</label>
+                </div>
+            </td>
+            <td>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" name="customMail${history.id}" id="customMail${history.id}">
+                    <label class="custom-control-label" for="customMail${history.id}">Отправить</label>
+                </div>
+            </td>
+        </tr>
+        </#list>
 
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <button type="submit" class="btn btn-danger">Удалить</button>
-                </td>
-                <td>
-                    <input class="dws-submit" type="submit" name="submit" value="Отправить">
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </form>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </td>
+            <td>
+                <input class="dws-submit" type="submit" name="submit" value="Отправить">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
 
 </@c.page>
