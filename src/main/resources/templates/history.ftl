@@ -43,7 +43,7 @@
                     </div>
                 </#if>
             <td>
-                <img src="img/${history.id}.png">
+                <img src="photo/${history.id}.png">
 <#--                <img src="img/1.png">-->
             </td>
             <td>
