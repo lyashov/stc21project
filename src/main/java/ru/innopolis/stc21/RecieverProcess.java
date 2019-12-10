@@ -79,7 +79,7 @@ public class RecieverProcess {
 
         factory.setUsername("guest");
         factory.setPassword("guest");
-        factory.setHost("176.99.11.75");
+        factory.setHost("localhost");
         factory.setPort(5672);
         factory.setVirtualHost("/");
         Connection connection = factory.newConnection();
