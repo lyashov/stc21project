@@ -1,3 +1,6 @@
+<#import "login.ftl" as l>
+<#include "security.ftl">
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -19,16 +22,17 @@
                 </li>
             </ul>
 
-            <div class="nav-item dropdown">
+            <div class="nav-item dropdown ml-5">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ${user.username}
+                    ${name}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/userProfile">Профиль пользователя</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="logout">Sign out</a>
+                    <a class="dropdown-item" href="/userEdit">Редактирование профиля</a>
                 </div>
             </div>
         </div>
+        <@l.logout />
     </div>
 </nav>

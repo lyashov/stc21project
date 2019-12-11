@@ -15,19 +15,16 @@ import ru.innopolis.stc21.med.service.UsersService;
 @Controller
 public class SecurityController {
 
+    @Autowired
+    private UsersRepository usersRepository;
+    @Autowired
+    private UsersService usersService;
 
     @GetMapping("/login")
     public String login(@RequestParam(name="name", required=false, defaultValue="Username") String name, Model model) {
         model.addAttribute("name", name);
         return "login";
     }
-
-    @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
-    private UsersService usersService;
-
-
 
     @GetMapping("/registration")
     public String registration() {
