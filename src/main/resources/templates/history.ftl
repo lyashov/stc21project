@@ -5,7 +5,7 @@
     <form action="/history" method="post">
         <table class="table">
             <thead>
-            <tr class="table-info">
+            <tr class="table-secondary">
                 <th scope="col">Дата обращения</th>
                 <th scope="col">ID</th>
                 <th scope="col">ФИО</th>
@@ -36,14 +36,13 @@
                         <#if history.accuracy != " ">
                         ${history.accuracy}%
                     </td>
-                <#else>
-                    <div class="spinner-border text-danger" role="status">
-                        <span class="sr-only">Обработка нейросетью..</span>
-                    </div>
+                    <#else>
+                        <div class="spinner-border text-danger" role="status">
+                            <span class="sr-only">Обработка нейросетью..</span>
+                        </div>
                     </#if>
                     <td>
                         <img src="photo/${history.id}.png">
-                        <#--                <img src="img/1.png">-->
                     </td>
                     <td>
                         <div class="custom-control custom-switch">
@@ -61,41 +60,23 @@
                     </td>
                 </tr>
             </#list>
-                </#if>
-            <td>
-                <img src="photo/${history.id}.png">
-<#--                <img src="img/1.png">-->
-            </td>
-            <td>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" name="customDel${history.id}" id="customDel${history.id}">
-                    <label class="custom-control-label" for="customDel${history.id}">Удалить</label>
-                </div>
-            </td>
-            <td>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" name="customMail${history.id}" id="customMail${history.id}">
-                    <label class="custom-control-label" for="customMail${history.id}">Отправить</label>
-                </div>
-            </td>
-        </tr>
-        </#list>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input class="btn btn-danger btn-block" type="submit" value="Delete">
+                    </td>
+                    <td>
+                        <input class="btn btn-primary btn-block" type="submit" value="Send email">
+                    </td>
+                </tr>
 
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <button type="submit" class="btn btn-danger">Удалить</button>
-            </td>
-            <td>
-                <input class="dws-submit" type="submit" name="submit" value="Отправить">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</form>
+            </tbody>
+        </table>
+    </form>
 
 </@c.page>

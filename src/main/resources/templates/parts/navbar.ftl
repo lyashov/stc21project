@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-ligth bg-light">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
         <a class="navbar-brand" href="/">
             <img src="img/logo.png">
             medProject
@@ -19,10 +19,9 @@
                 </li>
             </ul>
 
-            <div class="nav-item dropdown mr-5">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Логин пользователя
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ${user.username}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/userProfile">Профиль пользователя</a>
