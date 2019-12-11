@@ -47,7 +47,7 @@ public class MainController {
 
     @GetMapping({"/"})
     public String historymain(Model model,
-                          @RequestParam(value="name", required=false, defaultValue="World") String name) throws RecordNotFoundException, FileNotFoundException {
+                              @RequestParam(value = "name", required = false, defaultValue = "World") String name) throws RecordNotFoundException, FileNotFoundException {
 
         UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
         List<MedicalHistoryEntity> medHistories = medicalHistoryService.getAllByUser(currentUser);
@@ -58,7 +58,7 @@ public class MainController {
 
     @GetMapping({"/history"})
     public String history(Model model,
-                        @RequestParam(value="name", required=false, defaultValue="World") String name) throws RecordNotFoundException, FileNotFoundException {
+                          @RequestParam(value = "name", required = false, defaultValue = "World") String name) throws RecordNotFoundException, FileNotFoundException {
 
         UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
         List<MedicalHistoryEntity> medHistories = medicalHistoryService.getAllByUser(currentUser);
@@ -69,17 +69,16 @@ public class MainController {
 
     @PostMapping({"/history"})
     public String historyPost(Model model,
-                              @RequestBody MultiValueMap<String, String> formData
-                              ) throws RecordNotFoundException {
+                              @RequestBody MultiValueMap<String, String> formData) throws RecordNotFoundException {
 
-         formData.toSingleValueMap();
+        formData.toSingleValueMap();
         return "redirect:/history";
     }
 
     @GetMapping({"/addRequest"})
     public String hello(Model model,
-        @RequestParam(value="name", required=false, defaultValue="World") String name) {
-       // model.addAttribute("name", name);
+                        @RequestParam(value = "name", required = false, defaultValue = "World") String name) {
+        // model.addAttribute("name", name);
         return "addRequest";
     }
 
@@ -96,37 +95,36 @@ public class MainController {
              Channel channel = connection.createChannel()) {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             channel.basicPublish("", QUEUE_NAME, null, message.getBytes("UTF-8"));
-            System.out.println(" [x] Sent '" + message +  "'");
+            System.out.println(" [x] Sent '" + message + "'");
         }
     }
 
 
-
     @PostMapping({"/addRequest"})
     public String hello(Model model,
-                        @RequestParam(value="name", required=false, defaultValue="World") String name,
+                        @RequestParam(value = "name", required = false, defaultValue = "World") String name,
                         @RequestParam("file") MultipartFile file) throws IOException, RecordNotFoundException, TimeoutException {
-        Long iid=0L;
+        Long iid = 0L;
         String fullPath = "";
         if (!file.isEmpty()) {
             String imgPath = uploadPath;
             //URL imgPath = getClass().getResource("/static/uploads");
             //File imgPath = ResourceUtils.getFile("classpath:uploads");
             File uploadDir = new File(imgPath);
-            if (!uploadDir.exists()){
+            if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
 
             UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
 
-            MedicalHistoryEntity mHistory = medicalHistoryService.create(new Date(),currentUser);
+            MedicalHistoryEntity mHistory = medicalHistoryService.create(new Date(), currentUser);
 
             String fileName = file.getOriginalFilename();
             String extension = "";
-    
+
             int i = fileName.lastIndexOf('.');
             if (i > 0) {
-                extension = fileName.substring(i+1);
+                extension = fileName.substring(i + 1);
             }
 
             fullPath = imgPath + "/" + mHistory.getId() + "." + extension; //file.getOriginalFilename();
