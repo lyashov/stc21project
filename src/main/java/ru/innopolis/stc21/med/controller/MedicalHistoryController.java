@@ -69,7 +69,6 @@ public class MedicalHistoryController {
     @PostMapping({"/history"})
     public String historyPost(Model model,
                               @RequestBody MultiValueMap<String, String> formData) throws RecordNotFoundException {
-
         formData.toSingleValueMap();
         return "redirect:/history";
     }
@@ -126,7 +125,10 @@ public class MedicalHistoryController {
                 extension = fileName.substring(i + 1);
             }
 
-            fullPath = imgPath + "/" + mHistory.getId() + "." + extension; //file.getOriginalFilename();
+            String fName = mHistory.getId() + "." + extension;
+            fullPath = imgPath + "/" + fName; //file.getOriginalFilename();
+            mHistory.setImgName(fName);
+            medicalHistoryService.save(mHistory);
             file.transferTo(new File(fullPath));
             iid = mHistory.getId();
         }
