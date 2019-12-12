@@ -29,6 +29,9 @@ public class MedicalHistoryEntity{
     @Column(name="accuracy", nullable=false)
     private String accuracy;
 
+    @Column(name="img_name", nullable=false, length=150)
+    private String imgName;
+
    // @OneToOne(cascade = CascadeType.ALL)
     //@JoinColumn(name = "pacient_info_id", referencedColumnName = "id")
     //private PacientInfoEntity pacientInfo;

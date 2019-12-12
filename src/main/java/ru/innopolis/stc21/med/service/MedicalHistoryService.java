@@ -31,9 +31,13 @@ public class MedicalHistoryService {
             entityNew.setDate_visit(date);
             entityNew.setNeiro_diagtose(" ");
             entityNew.setAccuracy(" ");
+            entityNew.setImgName(" ");
             return repository.save(entityNew);
     }
 
+    public MedicalHistoryEntity save(MedicalHistoryEntity medicalHistoryEntity) {
+        return repository.save(medicalHistoryEntity);
+    }
    /* public void save(UsersEntity usersEntity)
     {
         repository.save(usersEntity);
