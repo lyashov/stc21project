@@ -27,9 +27,9 @@
                     ${name}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/userProfile">Профиль пользователя</a>
+                    <a class="dropdown-item" href="/user">Профиль пользователя</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/userEdit">Редактирование профиля</a>
+                    <a class="dropdown-item" href="/user/${id}">Редактирование профиля</a>
                 </div>
             </div>
         </div>

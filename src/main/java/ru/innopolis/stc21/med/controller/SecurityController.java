@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.UsersEntity;
-import ru.innopolis.stc21.med.repository.UsersRepository;
-import ru.innopolis.stc21.med.service.UsersService;
+import ru.innopolis.stc21.med.repository.UserRepository;
+import ru.innopolis.stc21.med.service.UserService;
 
 
 @Controller
 public class SecurityController {
 
     @Autowired
-    private UsersRepository usersRepository;
+    private UserRepository userRepository;
     @Autowired
-    private UsersService usersService;
+    private UserService usersService;
 
     @GetMapping("/login")
     public String login(@RequestParam(name="name", required=false, defaultValue="Username") String name, Model model) {
@@ -46,7 +46,7 @@ public class SecurityController {
             @RequestParam(name="snils", required=false, defaultValue="") String snils,
                           Model model) throws RecordNotFoundException {
 
-        UsersEntity usersEntity = usersRepository.findByUsername(username);
+        UsersEntity usersEntity = userRepository.findByUsername(username);
         if(usersEntity != null){
             //usersEntity.setUsername(username);
             //usersEntity.setPassword(password);

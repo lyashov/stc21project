@@ -7,7 +7,7 @@
                 <h2 class="mb-3 ml-5">User profile</h2>
             </div>
             <div class="col-4">
-                <a class="btn btn-danger" href="/userEdit">Edit profile</a>
+                <a class="btn btn-danger" href="/user/${user.id}">Edit profile</a>
             </div>
         </div>
 

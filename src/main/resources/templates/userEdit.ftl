@@ -5,23 +5,14 @@
         <h2 class="mb-3 ml-5">Edit profile</h2>
     </div>
 
-    <form action="/userSave" method="post">
-        <div class="container">
-            <div class="input-group input-group-lg mb-4">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 12rem;">username</span>
-                </div>
-                <input type="text" value="${user.username}" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-lg">
-            </div>
-        </div>
+    <form action="/user" method="post">
 
         <div class="container">
             <div class="input-group input-group-lg mb-4">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 12rem;">first_name</span>
                 </div>
-                <input type="text" value="${user.first_name}" class="form-control" aria-label="Sizing example input"
+                <input name="first_name" type="text" value="${user.first_name}" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-lg">
             </div>
         </div>
@@ -31,7 +22,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 12rem;">last_name</span>
                 </div>
-                <input type="text" value="${user.last_name}" class="form-control" aria-label="Sizing example input"
+                <input name="last_name" type="text" value="${user.last_name}" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-lg">
             </div>
         </div>
@@ -41,7 +32,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 12rem;">second_name</span>
                 </div>
-                <input type="text" value="${user.second_name}" class="form-control" aria-label="Sizing example input"
+                <input name="second_name" type="text" value="${user.second_name}" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-lg">
             </div>
         </div>
@@ -51,7 +42,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 12rem;">email</span>
                 </div>
-                <input type="text" value="${user.email}" class="form-control" aria-label="Sizing example input"
+                <input name="email" type="text" value="${user.email}" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-lg">
             </div>
         </div>
@@ -61,7 +52,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 12rem;">password</span>
                 </div>
-                <input type="text" value="${user.password}" class="form-control" aria-label="Sizing example input"
+                <input name="password" type="text" value="${user.password}" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-lg">
             </div>
         </div>
@@ -71,7 +62,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-lg" style="width: 12rem;">snils</span>
                 </div>
-                <input type="text" value="${user.snils}" class="form-control" aria-label="Sizing example input"
+                <input name="snils" type="text" value="${user.snils}" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-lg">
             </div>
         </div>
@@ -86,6 +77,8 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" value="${user.id}" name="userId">
+        <input type="hidden" value="${_csrf.token}" name="_csrf">
 
     </form>
 </@c.page>

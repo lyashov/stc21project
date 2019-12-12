@@ -1,19 +1,14 @@
 package ru.innopolis.stc21.med.service;
 
-import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.innopolis.stc21.med.configs.Role;
-import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.MedicalHistoryEntity;
 import ru.innopolis.stc21.med.model.UsersEntity;
 import ru.innopolis.stc21.med.repository.MedicalHistoryRepository;
-import ru.innopolis.stc21.med.repository.UsersRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MedicalHistoryService {
