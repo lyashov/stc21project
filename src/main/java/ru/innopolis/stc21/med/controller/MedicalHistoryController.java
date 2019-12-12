@@ -11,14 +11,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.MedicalHistoryEntity;
 import ru.innopolis.stc21.med.model.UsersEntity;
 import ru.innopolis.stc21.med.service.MedicalHistoryService;
-import ru.innopolis.stc21.med.service.UsersService;
+import ru.innopolis.stc21.med.service.UserService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,14 +28,14 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 @Controller
-public class MainController {
+public class MedicalHistoryController {
     @Value("${upload.path}")
     private String uploadPath;
     @Autowired
     private Environment env;
 
     @Autowired
-    private UsersService usersService;
+    private UserService usersService;
     @Autowired
     private MedicalHistoryService medicalHistoryService;
 

@@ -2,9 +2,13 @@
 
 <@c.page>
     <div class="container">
-        <div class="row">
-            <h1 class="mb-3 ml-5">User profile</h1>
-            <a class="btn btn-primary" role="button">Edit profile</a>
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <h2 class="mb-3 ml-5">User profile</h2>
+            </div>
+            <div class="col-4">
+                <a class="btn btn-danger" href="/user/${user.id}">Edit profile</a>
+            </div>
         </div>
 
         <div class="card border-primary mb-3" style="max-width: 60rem;">
