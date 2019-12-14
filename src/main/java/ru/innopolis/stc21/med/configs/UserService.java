@@ -8,12 +8,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.UsersEntity;
+import ru.innopolis.stc21.med.service.MailSender;
 import ru.innopolis.stc21.med.service.UsersService;
 
 @Service
 public class UserService implements UserDetailsService {
     @Autowired
     UsersService usersService;
+
+    @Autowired
+    private MailSender mailSender;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

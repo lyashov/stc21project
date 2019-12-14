@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
     UsersEntity findByUsername(String username);
+
 }
+
