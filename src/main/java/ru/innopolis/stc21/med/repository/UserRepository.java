@@ -7,7 +7,7 @@ import ru.innopolis.stc21.med.model.UsersEntity;
 import java.util.List;
 
 @Repository
-public interface UsersRepository extends JpaRepository<UsersEntity, Long> {
+public interface UserRepository extends JpaRepository<UsersEntity, Long> {
     UsersEntity findByUsername(String username);
 
 }

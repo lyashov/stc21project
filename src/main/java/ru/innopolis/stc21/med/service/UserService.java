@@ -2,20 +2,23 @@ package ru.innopolis.stc21.med.service;
 
 import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.innopolis.stc21.med.configs.Role;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.UsersEntity;
-import ru.innopolis.stc21.med.repository.UsersRepository;
+import ru.innopolis.stc21.med.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsersService {
+public class UserService implements UserDetailsService {
     @Autowired
-    UsersRepository repository;
+    UserRepository repository;
 
     public List<UsersEntity> getAllUsers()
     {
@@ -85,5 +88,27 @@ public class UsersService {
         } else {
             throw new RecordNotFoundException("No user record exist for given id");
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        /*User usr = new User();*/
+        // usersService.setUsername(username);
+        // usersService.setPassword("password");
+        //  usersService.setAuthorities(ImmutableList.of(Role.USER));
+        // usersService.setAccountNonExpired(true);
+        //  usersService.setAccountNonLocked(true);
+        //  usersService.setEnabled(true);
+        // usersService.setCredentialsNonExpired(true);
+        UsersEntity usersEntity = null;
+        usersEntity = repository.findByUsername(username);
+        usersEntity.setUsername(username);
+        //usersEntity.setPassword("password");
+        usersEntity.setAuthorities(ImmutableList.of(Role.PACIENT));
+        usersEntity.setAccountNonExpired(true);
+        usersEntity.setAccountNonLocked(true);
+        usersEntity.setEnabled(true);
+        usersEntity.setCredentialsNonExpired(true);
+        return usersEntity;
     }
 }

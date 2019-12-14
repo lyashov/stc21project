@@ -42,7 +42,7 @@
                         </div>
                     </#if>
                     <td>
-                        <img src="photo/${history.id}.png">
+                        <img src="photo/${history.imgName}">
                     </td>
                     <td>
                         <div class="custom-control custom-switch">

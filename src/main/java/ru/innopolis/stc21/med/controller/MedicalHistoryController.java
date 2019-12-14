@@ -11,7 +11,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
@@ -19,7 +18,7 @@ import ru.innopolis.stc21.med.model.MedicalHistoryEntity;
 import ru.innopolis.stc21.med.model.UsersEntity;
 import ru.innopolis.stc21.med.service.MailSender;
 import ru.innopolis.stc21.med.service.MedicalHistoryService;
-import ru.innopolis.stc21.med.service.UsersService;
+import ru.innopolis.stc21.med.service.UserService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,14 +29,14 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 @Controller
-public class MainController {
+public class MedicalHistoryController {
     @Value("${upload.path}")
     private String uploadPath;
     @Autowired
     private Environment env;
 
     @Autowired
-    private UsersService usersService;
+    private UserService usersService;
     @Autowired
     private MedicalHistoryService medicalHistoryService;
     @Autowired
@@ -158,7 +157,10 @@ public class MainController {
                 extension = fileName.substring(i + 1);
             }
 
-            fullPath = imgPath + "/" + mHistory.getId() + "." + extension; //file.getOriginalFilename();
+            String fName = mHistory.getId() + "." + extension;
+            fullPath = imgPath + "/" + fName; //file.getOriginalFilename();
+            mHistory.setImgName(fName);
+            medicalHistoryService.save(mHistory);
             file.transferTo(new File(fullPath));
             iid = mHistory.getId();
         }

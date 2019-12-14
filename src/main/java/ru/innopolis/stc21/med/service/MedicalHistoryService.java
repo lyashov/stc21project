@@ -1,44 +1,44 @@
 package ru.innopolis.stc21.med.service;
 
-import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.innopolis.stc21.med.configs.Role;
-import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.MedicalHistoryEntity;
 import ru.innopolis.stc21.med.model.UsersEntity;
 import ru.innopolis.stc21.med.repository.MedicalHistoryRepository;
-import ru.innopolis.stc21.med.repository.UsersRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MedicalHistoryService {
     @Autowired
     MedicalHistoryRepository repository;
 
-    public List<MedicalHistoryEntity> getAllByUser(UsersEntity usersEntity) {
+    public List<MedicalHistoryEntity> getAllByUser(UsersEntity usersEntity)
+    {
         List<MedicalHistoryEntity> historyList = repository.getAllByUserOrderByIdDesc(usersEntity);
-        if (historyList.size() > 0) {
+        if(historyList.size() > 0) {
             return historyList;
         } else {
             return new ArrayList<MedicalHistoryEntity>();
         }
     }
 
-    public MedicalHistoryEntity create(Date date, UsersEntity usersEntity) {
-        MedicalHistoryEntity entityNew = new MedicalHistoryEntity();
-        entityNew.setUser(usersEntity);
-        entityNew.setDate_visit(date);
-        entityNew.setNeiro_diagtose(" ");
-        entityNew.setAccuracy(" ");
-        return repository.save(entityNew);
+   public MedicalHistoryEntity create(Date date, UsersEntity usersEntity) {
+            MedicalHistoryEntity entityNew = new MedicalHistoryEntity();
+            entityNew.setUser(usersEntity);
+            entityNew.setDate_visit(date);
+            entityNew.setNeiro_diagtose(" ");
+            entityNew.setAccuracy(" ");
+            entityNew.setImgName(" ");
+            return repository.save(entityNew);
     }
 
-   /*public void save(UsersEntity usersEntity)
+    public MedicalHistoryEntity save(MedicalHistoryEntity medicalHistoryEntity) {
+        return repository.save(medicalHistoryEntity);
+    }
+   /* public void save(UsersEntity usersEntity)
     {
         repository.save(usersEntity);
     }*/
