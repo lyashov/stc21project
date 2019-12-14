@@ -12,6 +12,7 @@
                 <th scope="col">Нейро-диагноз</th>
                 <th scope="col">Процент точности</th>
                 <th scope="col">Картинка</th>
+                <th scope="col">Комментарий</th>
                 <th scope="col">Удалить</th>
                 <th scope="col">Отправить на email</th>
             </tr>
@@ -45,6 +46,9 @@
                         <img src="photo/${history.imgName}">
                     </td>
                     <td>
+                        ${history.comment}
+                    </td>
+                    <td>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" name="customDel${history.id}"
                                    id="customDel${history.id}">
@@ -60,20 +64,21 @@
                     </td>
                 </tr>
             </#list>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <input class="btn btn-danger btn-block" type="submit" value="Delete">
-                    </td>
-                    <td>
-                        <input class="btn btn-primary btn-block" type="submit" value="Send email">
-                    </td>
-                </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <input class="btn btn-danger btn-block" type="submit" value="Delete">
+                </td>
+                <td>
+                    <input class="btn btn-primary btn-block" type="submit" value="Send email">
+                </td>
+            </tr>
 
             </tbody>
         </table>

@@ -101,6 +101,7 @@ public class MedicalHistoryController {
     @PostMapping({"/addRequest"})
     public String hello(Model model,
                         @RequestParam(value = "name", required = false, defaultValue = "World") String name,
+                        @RequestParam String comment,
                         @RequestParam("file") MultipartFile file) throws IOException, RecordNotFoundException, TimeoutException {
         Long iid = 0L;
         String fullPath = "";
@@ -116,6 +117,7 @@ public class MedicalHistoryController {
             UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
 
             MedicalHistoryEntity mHistory = medicalHistoryService.create(new Date(), currentUser);
+            mHistory.setComment(comment == null? "" : comment);
 
             String fileName = file.getOriginalFilename();
             String extension = "";
