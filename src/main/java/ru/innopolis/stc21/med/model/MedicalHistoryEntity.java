@@ -29,6 +29,9 @@ public class MedicalHistoryEntity{
     @Column(name="accuracy", nullable=false)
     private String accuracy;
 
+    @Column(name="comment_user", nullable=false)
+    private String comment;
+
     @Column(name="img_name", nullable=false, length=150)
     private String imgName;
 
