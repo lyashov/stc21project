@@ -16,7 +16,7 @@ public class MedApplication {
 
     public static void main(String[] args) throws IOException, TimeoutException {
         SpringApplication.run(MedApplication.class, args);
-        RecieverProcess rp = new RecieverProcess();
+        //RecieverProcess rp = new RecieverProcess();
     }
 
 }
