@@ -12,17 +12,24 @@
                console.log(vvv);
                 postRequest();
             });
-            function postRequest(){
+
+            $.post({
+                url: '/geoip',
+                data: {'_token': $('meta[name="csrf-token"]').attr('content'), ipAddress: vvv}
+            }).done(function (data) {
+                alert('Успешно! ' + data);
+            });
+            /*function postRequest(){
                 $.ajax({
                     url: "geoip",
                     type: "POST",
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     data: ({ipAddress: $("#ip").val()}),
-                   /* success: function (data) {
+                   /!* success: function (data) {
                         $("#status").html(data);
-                    },*/
+                    },*!/
                 });
-            };
+            };*/
         });
 
     </script>

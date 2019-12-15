@@ -80,15 +80,6 @@ public class MedicalHistoryController {
         // model.addAttribute("name", name);
         return "addRequest";
     }
-    /*@PostMapping({"/history"})
-    public String historyPost(Model model,
-                              @RequestParam(value = "ipAddress", required = true) String ipAddress) throws RecordNotFoundException, IOException {
-        GeoIPService locationService
-                = new GeoIPService();
-        System.out.println(ipAddress);
-        locationService.getLocation(ipAddress);
-        return "redirect:/hi";
-    }*/
 
     private void sender(String message) throws IOException, TimeoutException {
         String QUEUE_NAME = env.getProperty("rabbit.queueToPyhton");

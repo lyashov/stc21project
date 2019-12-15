@@ -92,7 +92,6 @@
                 <td></td>
                 <td></td>
                 <td>
-
                     <input class="btn btn-primary btn-block" type="button" value="больницы!"
                            onClick="location.href='geoip'">
                 </td>
