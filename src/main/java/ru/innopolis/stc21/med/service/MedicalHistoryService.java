@@ -2,6 +2,7 @@ package ru.innopolis.stc21.med.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.MedicalHistoryEntity;
 import ru.innopolis.stc21.med.model.UsersEntity;
 import ru.innopolis.stc21.med.repository.MedicalHistoryRepository;
@@ -9,6 +10,7 @@ import ru.innopolis.stc21.med.repository.MedicalHistoryRepository;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MedicalHistoryService {
@@ -42,17 +44,24 @@ public class MedicalHistoryService {
    /* public void save(UsersEntity usersEntity)
     {
         repository.save(usersEntity);
-    }
+    }*/
 
-    public void deleteUserById(Long id) throws RecordNotFoundException
-    {
-        Optional<UsersEntity> user = repository.findById(id);
+    public void deleteHistoryById(Long id) throws RecordNotFoundException {
+        Optional<MedicalHistoryEntity> history = repository.findById(id);
 
-        if(user.isPresent())
-        {
+        if (history.isPresent()) {
             repository.deleteById(id);
         } else {
             throw new RecordNotFoundException("No user record exist for given id");
         }
-    }*/
+    }
+
+    public MedicalHistoryEntity getHistoryById(Long id) throws RecordNotFoundException {
+        Optional<MedicalHistoryEntity> history = repository.findById(id);
+        if (history.isPresent()) {
+            return history.get();
+        } else {
+            throw new RecordNotFoundException("No user record exist for given id");
+        }
+    }
 }

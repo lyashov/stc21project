@@ -24,7 +24,16 @@
 		</div>
 		<input class="dws-submit" type="submit" name="submit" value="ВОЙТИ"><br />
 		<a href="/registration">Зарегистрироваться</a>
+		<div class="dws-social">
+			<i class="fa fa-vk" aria-hidden="true"></i>
+			<i class="fa fa-twitter" aria-hidden="true"></i>
+			<i class="fa fa-facebook" aria-hidden="true"></i>
+			<i class="fa fa-google-plus-official" aria-hidden="true"></i>
+			<i class="fa fa-odnoklassniki" aria-hidden="true"></i>
+		</div>
 	</form>
+
 </div>
 </form>
+
 </body>

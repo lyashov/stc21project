@@ -64,21 +64,20 @@
                     </td>
                 </tr>
             </#list>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <input class="btn btn-danger btn-block" type="submit" value="Delete">
-                </td>
-                <td>
-                    <input class="btn btn-primary btn-block" type="submit" value="Send email">
-                </td>
-            </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input class="btn btn-danger btn-block" type="submit" name="deleteAction" value="Delete">
+                    </td>
+                    <td>
+                        <input class="btn btn-primary btn-block" type="submit" name="sendEmail" value="Send email">
+                    </td>
+                </tr>
 
             </tbody>
         </table>
