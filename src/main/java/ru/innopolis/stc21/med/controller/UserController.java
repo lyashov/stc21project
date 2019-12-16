@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.UsersEntity;
-import ru.innopolis.stc21.med.repository.UserRepository;
 import ru.innopolis.stc21.med.service.UserService;
 
 @Controller
@@ -17,11 +16,6 @@ public class UserController {
 
     @Autowired
     private UserService usersService;
-    @Autowired
-    private UserRepository userRepository;
-
-    public UserController() {
-    }
 
     public String getCurrentUsername() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -45,7 +39,7 @@ public class UserController {
     @PostMapping
     public String addUser(
             @RequestParam String password,
-            @RequestParam String first_name ,
+            @RequestParam String first_name,
             @RequestParam String second_name,
             @RequestParam String last_name,
             @RequestParam String email,
