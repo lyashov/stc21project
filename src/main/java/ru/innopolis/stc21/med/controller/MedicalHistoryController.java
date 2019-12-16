@@ -102,6 +102,7 @@ public class MedicalHistoryController {
             String accuracy = history.getAccuracy();
             message+="На ваше обращение поданное "+date_visit+". Ваш диагноз нейросети: "+neiro_diagtose+ " с вероятностью "+ accuracy+"%.\n";
         }
+        message+= "\n С Уважением, команда МедБрат!";
         return message;
     }
 
