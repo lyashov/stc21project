@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM maven:3.6-jdk-8-alpine AS build
 WORKDIR /data
 COPY . /data
 RUN mvn clean package
