@@ -1,5 +1,9 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+FROM maven:3.6-jdk-8-alpine AS build
+WORKDIR /data
+COPY . /data
+RUN mvn clean package
+
+FROM openjdk:8-jre-alpine AS final
+WORKDIR /data
+COPY --from=build /data/target/medProject-1.0-SNAPSHOT.jar /data/app.jar
+ENTRYPOINT ["/bin/sh", "-c", "java -jar app.jar"]

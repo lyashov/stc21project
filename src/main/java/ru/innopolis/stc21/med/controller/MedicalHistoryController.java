@@ -17,6 +17,7 @@ import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.MedicalHistoryEntity;
 import ru.innopolis.stc21.med.model.UsersEntity;
 import ru.innopolis.stc21.med.service.GeoIPService;
+import ru.innopolis.stc21.med.service.MailSender;
 import ru.innopolis.stc21.med.service.MedicalHistoryService;
 import ru.innopolis.stc21.med.service.UserService;
 
@@ -39,6 +40,8 @@ public class MedicalHistoryController {
     private UserService usersService;
     @Autowired
     private MedicalHistoryService medicalHistoryService;
+    @Autowired
+    private MailSender mailSender;
 
     public String getCurrentUsername() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -69,9 +72,39 @@ public class MedicalHistoryController {
 
     @PostMapping({"/history"})
     public String historyPost(Model model,
-                              @RequestBody MultiValueMap<String, String> formData) throws RecordNotFoundException {
-        formData.toSingleValueMap();
+                              @RequestBody MultiValueMap<String, String> formData
+    ) throws RecordNotFoundException {
+        if (formData.containsKey("deleteAction")) {
+            List<String> strings = formData.get("customDel");
+            long[] delIds = strings.stream().mapToLong(Long::valueOf).toArray();
+            for (long delId : delIds) {
+                medicalHistoryService.deleteHistoryById(delId);
+            }
+        } else if (formData.containsKey("sendEmail")) {
+            UsersEntity user = usersService.getUserByName(getCurrentUsername());
+            List<String> idsHistiry = formData.get("customMail");
+            String message = buildMessage(idsHistiry);
+            mailSender.send(user.getEmail(), "Результаты анализов порталом MedBrat.ml", message);
+        }
+
         return "redirect:/history";
+    }
+
+    private String buildMessage(List<String> idsHistiry) throws RecordNotFoundException {
+        UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
+        String message = "Уважаемый(ая), "+ currentUser.getFirst_name() +" " +currentUser.getSecond_name()+"\n";
+
+        long[] mailIds = idsHistiry.stream().mapToLong(Long::valueOf).toArray();
+
+        for (Long id : mailIds) {
+            MedicalHistoryEntity history = medicalHistoryService.getHistoryById(id);
+            Date date_visit = history.getDate_visit();
+            String neiro_diagtose = history.getNeiro_diagtose();
+            String accuracy = history.getAccuracy();
+            message+="На ваше обращение поданное "+date_visit+". Ваш диагноз нейросети: "+neiro_diagtose+ " с вероятностью "+ accuracy+"%.\n";
+        }
+        message+= "\n С Уважением, команда МедБрат!";
+        return message;
     }
 
     @GetMapping({"/addRequest"})
@@ -80,6 +113,7 @@ public class MedicalHistoryController {
         // model.addAttribute("name", name);
         return "addRequest";
     }
+
 
     private void sender(String message) throws IOException, TimeoutException {
         String QUEUE_NAME = env.getProperty("rabbit.queueToPyhton");
