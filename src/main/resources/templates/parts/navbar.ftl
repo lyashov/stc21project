@@ -12,17 +12,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/history">История обращений</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addRequest">Создать обращение</a>
-            </li>
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="logout">Выход</a>
+                    <a class="nav-link" href="/history">История обращений</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addRequest">Создать обращение</a>
                 </li>
             </ul>
 

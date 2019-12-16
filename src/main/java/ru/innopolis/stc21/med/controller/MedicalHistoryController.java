@@ -76,15 +76,19 @@ public class MedicalHistoryController {
     ) throws RecordNotFoundException {
         if (formData.containsKey("deleteAction")) {
             List<String> strings = formData.get("customDel");
-            long[] delIds = strings.stream().mapToLong(Long::valueOf).toArray();
-            for (long delId : delIds) {
-                medicalHistoryService.deleteHistoryById(delId);
+            if (strings != null) {
+                long[] delIds = strings.stream().mapToLong(Long::valueOf).toArray();
+                for (long delId : delIds) {
+                    medicalHistoryService.deleteHistoryById(delId);
+                }
             }
         } else if (formData.containsKey("sendEmail")) {
             UsersEntity user = usersService.getUserByName(getCurrentUsername());
             List<String> idsHistiry = formData.get("customMail");
-            String message = buildMessage(idsHistiry);
-            mailSender.send(user.getEmail(), "Результаты анализов порталом MedBrat.ml", message);
+            if (idsHistiry != null) {
+                String message = buildMessage(idsHistiry);
+                mailSender.send(user.getEmail(), "Результаты анализов порталом MedBrat.ml", message);
+            }
         }
 
         return "redirect:/history";
@@ -92,7 +96,7 @@ public class MedicalHistoryController {
 
     private String buildMessage(List<String> idsHistiry) throws RecordNotFoundException {
         UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
-        String message = "Уважаемый(ая), "+ currentUser.getFirst_name() +" " +currentUser.getSecond_name()+"\n";
+        String message = "Уважаемый(ая), " + currentUser.getFirst_name() + " " + currentUser.getSecond_name() + "\n";
 
         long[] mailIds = idsHistiry.stream().mapToLong(Long::valueOf).toArray();
 
@@ -101,9 +105,9 @@ public class MedicalHistoryController {
             Date date_visit = history.getDate_visit();
             String neiro_diagtose = history.getNeiro_diagtose();
             String accuracy = history.getAccuracy();
-            message+="На ваше обращение поданное "+date_visit+". Ваш диагноз нейросети: "+neiro_diagtose+ " с вероятностью "+ accuracy+"%.\n";
+            message += "На ваше обращение поданное " + date_visit + ". Ваш диагноз нейросети: " + neiro_diagtose + " с вероятностью " + accuracy + "%.\n";
         }
-        message+= "\n С Уважением, команда МедБрат!";
+        message += "\n С Уважением, команда МедБрат!";
         return message;
     }
 
@@ -151,7 +155,7 @@ public class MedicalHistoryController {
             UsersEntity currentUser = usersService.getUserByName(getCurrentUsername());
 
             MedicalHistoryEntity mHistory = medicalHistoryService.create(new Date(), currentUser);
-            mHistory.setComment(comment == null? "" : comment);
+            mHistory.setComment(comment == null ? "" : comment);
 
             String fileName = file.getOriginalFilename();
             String extension = "";
