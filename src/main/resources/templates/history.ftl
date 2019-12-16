@@ -12,12 +12,13 @@
                 <th scope="col">Нейро-диагноз</th>
                 <th scope="col">Процент точности</th>
                 <th scope="col">Картинка</th>
+                <th scope="col">Комментарий</th>
                 <th scope="col">Удалить</th>
                 <th scope="col">Отправить на email</th>
             </tr>
             </thead>
             <tbody>
-
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <#list medHistories as history>
                 <tr>
                     <td>${history.date_visit}</td>
@@ -45,17 +46,20 @@
                         <img src="photo/${history.imgName}">
                     </td>
                     <td>
+                        ${history.comment}
+                    </td>
+                    <td>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" name="customDel"
-                                   id="customDel[${history.id}]" value="${history.id}">
-                            <label class="custom-control-label" for="customDel[${history.id}]">Удалить</label>
+                            <input type="checkbox" class="custom-control-input" name="customDel${history.id}"
+                                   id="customDel${history.id}">
+                            <label class="custom-control-label" for="customDel${history.id}">Удалить</label>
                         </div>
                     </td>
                     <td>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" name="customMail"
-                                   id="customMail[${history.id}]" value="${history.id}">
-                            <label class="custom-control-label" for="customMail[${history.id}]">Отправить</label>
+                            <input type="checkbox" class="custom-control-input" name="customMail${history.id}"
+                                   id="customMail${history.id}">
+                            <label class="custom-control-label" for="customMail${history.id}">Отправить</label>
                         </div>
                     </td>
                 </tr>
@@ -68,7 +72,6 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <input type="hidden" name="_csrf" value="${_csrf.token}" />
                         <input class="btn btn-danger btn-block" type="submit" name="deleteAction" value="Delete">
                     </td>
                     <td>

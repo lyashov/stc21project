@@ -32,6 +32,7 @@ public class MedicalHistoryService {
             entityNew.setNeiro_diagtose(" ");
             entityNew.setAccuracy(" ");
             entityNew.setImgName(" ");
+            entityNew.setComment(" ");
             return repository.save(entityNew);
     }
 
