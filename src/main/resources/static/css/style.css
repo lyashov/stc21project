@@ -66,12 +66,14 @@ content: "\f023";
  color: #319ebc;
  transition: all 0.3s;
 }
+
 .dws-social i{
  color: #fff;
  font-size: 20px;
  width: 20px;
  padding: 10px;
 }
+
 .dws-social i:hover{
  background-color: #fff;
  color: #1a394f;

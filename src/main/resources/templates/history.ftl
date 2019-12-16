@@ -50,16 +50,16 @@
                     </td>
                     <td>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" name="customDel${history.id}"
-                                   id="customDel${history.id}">
-                            <label class="custom-control-label" for="customDel${history.id}">Удалить</label>
+                            <input type="checkbox" class="custom-control-input" name="customDel"
+                                   id="customDel[${history.id}]" value="${history.id}">
+                            <label class="custom-control-label" for="customDel[${history.id}]">Удалить</label>
                         </div>
                     </td>
                     <td>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" name="customMail${history.id}"
-                                   id="customMail${history.id}">
-                            <label class="custom-control-label" for="customMail${history.id}">Отправить</label>
+                            <input type="checkbox" class="custom-control-input" name="customMail"
+                                   id="customMail[${history.id}]" value="${history.id}">
+                            <label class="custom-control-label" for="customMail[${history.id}]">Отправить</label>
                         </div>
                     </td>
                 </tr>
@@ -69,16 +69,22 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td>
+                    <#if medHistories?size == 0><b>Записей нет</b></#if>
+                </td>
                 <td></td>
                 <td></td>
                 <td>
-                    <input class="btn btn-danger btn-block" type="submit" value="Delete">
+                    <#if medHistories?size gt 0>
+                    <input class="btn btn-danger btn-block" type="submit" name="deleteAction" value="Delete">
                 </td>
                 <td>
-                    <input class="btn btn-primary btn-block" type="submit" value="Send email">
+                    <input class="btn btn-primary btn-block" type="submit" name="sendEmail" value="Send email">
+                    </#if>
                 </td>
+
             </tr>
+
             <tr>
                 <td></td>
                 <td></td>
@@ -88,7 +94,7 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <input class="btn btn-primary btn-block" type="button" value="Расположение ближайших больницы!"
+                    <input class="btn btn-primary btn-block" type="button" value="больницы!"
                            onClick="location.href='geoip'">
                 </td>
             </tr>

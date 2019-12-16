@@ -1,9 +1,7 @@
 package ru.innopolis.stc21.med.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import ru.innopolis.stc21.med.service.GeoIP;
 import ru.innopolis.stc21.med.service.GeoIPService;
 
@@ -31,7 +29,6 @@ public class GeoIPController {
         GeoIPService locationService
                 = new GeoIPService();
         GeoIP userGeoPosition = locationService.getLocation(ipAddress);
-
         return "redirect:/hospitallocation";
     }
 
