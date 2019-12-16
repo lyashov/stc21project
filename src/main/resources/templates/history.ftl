@@ -79,7 +79,19 @@
                     <input class="btn btn-primary btn-block" type="submit" value="Send email">
                 </td>
             </tr>
-
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <input class="btn btn-primary btn-block" type="button" value="Расположение ближайших больницы!"
+                           onClick="location.href='geoip'">
+                </td>
+            </tr>
             </tbody>
         </table>
     </form>
