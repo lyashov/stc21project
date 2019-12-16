@@ -85,6 +85,44 @@
 
             </tr>
 
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <input class="btn btn-danger btn-block" type="submit" value="Delete">
+                </td>
+                <td>
+                    <input class="btn btn-primary btn-block" type="submit" value="Send email">
+                </td>
+                <td></td>
+                <td>
+
+                </td>
+                <td></td>
+                <td>
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <input class="btn btn-primary btn-block" type="button" value="больницы!"
+                           onClick="location.href='geoip'">
+                </td>
+            </tr>
             </tbody>
         </table>
     </form>

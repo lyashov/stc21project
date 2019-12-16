@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
 import ru.innopolis.stc21.med.model.MedicalHistoryEntity;
 import ru.innopolis.stc21.med.model.UsersEntity;
+import ru.innopolis.stc21.med.service.GeoIPService;
 import ru.innopolis.stc21.med.service.MailSender;
 import ru.innopolis.stc21.med.service.MedicalHistoryService;
 import ru.innopolis.stc21.med.service.UserService;
