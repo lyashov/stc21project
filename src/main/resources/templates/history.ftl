@@ -1,6 +1,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
+
     <form action="/history" method="post">
         <table class="table">
             <thead>
@@ -11,6 +12,7 @@
                 <th scope="col">Нейро-диагноз</th>
                 <th scope="col">Процент точности</th>
                 <th scope="col">Картинка</th>
+                <th scope="col">Комментарий</th>
                 <th scope="col">Удалить</th>
                 <th scope="col">Отправить на email</th>
             </tr>
