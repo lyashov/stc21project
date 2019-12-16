@@ -28,7 +28,7 @@ public class GeoIPController {
 
         GeoIPService locationService
                 = new GeoIPService();
-        locationService.getLocation(ipAddress);
+        GeoIP userGeoPosition = locationService.getLocation(ipAddress);
         return "redirect:/hospitallocation";
     }
 

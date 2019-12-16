@@ -44,6 +44,9 @@
                         <img src="photo/${history.imgName}">
                     </td>
                     <td>
+                        ${history.comment}
+                    </td>
+                    <td>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" name="customDel${history.id}"
                                    id="customDel${history.id}">
@@ -60,6 +63,7 @@
                 </tr>
             </#list>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
