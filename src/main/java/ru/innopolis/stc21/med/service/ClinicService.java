@@ -1,47 +1,49 @@
 package ru.innopolis.stc21.med.service;
 
-import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.innopolis.stc21.med.configs.Role;
 import ru.innopolis.stc21.med.exception.RecordNotFoundException;
-import ru.innopolis.stc21.med.model.UsersEntity;
-import ru.innopolis.stc21.med.repository.UserRepository;
+import ru.innopolis.stc21.med.model.ClinicEntity;
+import ru.innopolis.stc21.med.repository.ClinicRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class ClinicsService implements UserDetailsService {
+public class ClinicService {
     @Autowired
-    UserRepository repository;
+    ClinicRepository repository;
 
-    public List<UsersEntity> getAllUsers()
-    {
-        List<UsersEntity> usersList = repository.findAll();
-        if(usersList.size() > 0) {
-            return usersList;
+    public List<ClinicEntity> getAllClinics() {
+        List<ClinicEntity> clinicsList = repository.findAll();
+        if (clinicsList.size() > 0) {
+            return clinicsList;
         } else {
-            return new ArrayList<UsersEntity>();
+            return new ArrayList<ClinicEntity>();
         }
     }
 
-    public UsersEntity getUserById(Long id) throws RecordNotFoundException
-    {
-        Optional<UsersEntity> user = repository.findById(id);
+/*
+    public ClinicEntity findClinicsEntitiesByClinic_id(Long id) throws RecordNotFoundException {
 
-        if(user.isPresent()) {
-            return user.get();
+        ClinicEntity clinic = repository.findClinicsEntitiesByClinic_id(id);
+
+*/
+/*        if(clinic.isPresent()) {
+            return clinic.get();
         } else {
             throw new RecordNotFoundException("No user record exist for given id");
-        }
-    }
+        }*//*
 
-    public UsersEntity getUserByName(String username) throws RecordNotFoundException
+        return null;
+    }
+*/
+
+
+    /**
+     * Delete!!!
+     */
+/*    public UsersEntity getUserByName(String username) throws RecordNotFoundException
     {
         Optional<UsersEntity> user = Optional.ofNullable(repository.findByUsername(username));
 
@@ -92,7 +94,7 @@ public class ClinicsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        /*User usr = new User();*/
+        *//*User usr = new User();*//*
         // usersService.setUsername(username);
         // usersService.setPassword("password");
         //  usersService.setAuthorities(ImmutableList.of(Role.USER));
@@ -110,5 +112,5 @@ public class ClinicsService implements UserDetailsService {
         usersEntity.setEnabled(true);
         usersEntity.setCredentialsNonExpired(true);
         return usersEntity;
-    }
+    }*/
 }
