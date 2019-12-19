@@ -24,11 +24,11 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         <#list clinicEntities as hospital>
             <tr>
-                <td>" "</td>
-                <td>${hospital.name}</td>
-                <td>${hospital.address}</td>
-                <td>${hospital.telephone}</td>
-                <td>${hospital.email}</td>
+                <td>${hospital.getKey()} км.</td>
+                <td>${hospital.getValue().name}</td>
+                <td>${hospital.getValue().address}</td>
+                <td>${hospital.getValue().telephone}</td>
+                <td>${hospital.getValue().email}</td>
             </tr>
         </#list>
          </tbody>

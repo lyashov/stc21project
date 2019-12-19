@@ -23,15 +23,10 @@ public class ClinicEntity{
     private String email;
 
     @Column(name="coord_x", nullable=false, length=200)
-    private String coord_x;
+    private String coordX;
 
     @Column(name="coord_y", nullable=false, length=100)
-    private String coord_y;
-
-
-
-
-
+    private String coordY;
 
 
 }
