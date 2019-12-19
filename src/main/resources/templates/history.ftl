@@ -1,6 +1,30 @@
-<#import "parts/common.ftl" as c>
+<#import "parts/commonHistory.ftl" as c>
 
-<@c.page>
+<@c.pageHistory>
+    <script type="text/javascript">
+
+
+        function doSend() {
+            //var inputText = 'AAAAAAAAaaa';//$("#input_str").val();
+            var iid = ${medHistories[0].id};
+            $.ajax({
+                url : 'getNeiroResponse',
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                mimeType: 'application/json',
+                data : ({
+                    iid: iid
+                }),
+                success: function (data) {
+                    $("#neiro" + iid).text(data.neiro_diagnose);
+                    $("#accuracy" + iid).text(data.accuracy);
+                    // $("#customCheck" + iid).checked="unchecked";
+                }
+            });
+        }
+
+    </script>
 
     <form action="/history" method="post">
         <table class="table">
@@ -24,7 +48,7 @@
                     <td>${history.date_visit}</td>
                     <td>${history.id}</td>
                     <td>${history.user}</td>
-                    <td>
+                    <td id="neiro${history.id}">
                         <#if history.neiro_diagtose != " ">
                             ${history.neiro_diagtose}
                         <#else>
@@ -33,7 +57,7 @@
                             </div>
                         </#if>
                     </td>
-                    <td>
+                    <td id="accuracy${history.id}">
                         <#if history.accuracy != " ">
                         ${history.accuracy}%
                     </td>
@@ -102,4 +126,4 @@
         </table>
     </form>
 
-</@c.page>
+</@c.pageHistory>

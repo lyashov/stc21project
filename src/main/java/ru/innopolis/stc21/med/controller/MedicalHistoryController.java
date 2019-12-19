@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,12 +22,17 @@ import ru.innopolis.stc21.med.service.MailSender;
 import ru.innopolis.stc21.med.service.MedicalHistoryService;
 import ru.innopolis.stc21.med.service.UserService;
 
+import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 @Controller
@@ -46,6 +52,51 @@ public class MedicalHistoryController {
     public String getCurrentUsername() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return auth.getName();
+    }
+
+    public DataSource getDataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://medbrat.ml:5432/projectdb");
+        dataSource.setUsername("winner");
+        dataSource.setPassword("ySFG1YRXZm3Pu5V");
+        return dataSource;
+    }
+
+
+    @RequestMapping(value = "/getNeiroResponse", method = RequestMethod.GET)
+    public @ResponseBody
+    JsonResponse getNeiroResponse(@RequestParam String iid) throws RecordNotFoundException, InterruptedException {
+        if ((iid == null) || (iid.equals(""))) return null;
+
+        JsonResponse resp = new JsonResponse();
+        MedicalHistoryEntity history = medicalHistoryService.getById(Long.valueOf(iid));
+        while (history.getNeiro_diagtose().equals(" ")){
+            TimeUnit.SECONDS.sleep(3);
+
+            try (java.sql.Connection connection = getDataSource().getConnection()) {
+                try (PreparedStatement preparedStatement =
+                             connection.prepareStatement(
+                                     "SELECT neiro_diagtose, accuracy FROM medical_history " +
+                                             "WHERE id=?")) {
+                    preparedStatement.setLong(1, Long.valueOf(iid));
+                    preparedStatement.executeQuery();
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    if (resultSet.next()) {
+                        if (!resultSet.getString("neiro_diagtose").equals(" ")) {
+                            resp.setNeiro_diagnose(resultSet.getString("neiro_diagtose"));
+                            resp.setAccuracy(resultSet.getString("accuracy"));
+                            return resp;
+                        }
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        resp.setNeiro_diagnose(history.getNeiro_diagtose());
+        resp.setAccuracy(history.getAccuracy());
+        return resp;
     }
 
     @GetMapping({"/"})
