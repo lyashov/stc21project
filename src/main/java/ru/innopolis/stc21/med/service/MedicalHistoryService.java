@@ -41,6 +41,15 @@ public class MedicalHistoryService {
     public MedicalHistoryEntity save(MedicalHistoryEntity medicalHistoryEntity) {
         return repository.save(medicalHistoryEntity);
     }
+
+    public MedicalHistoryEntity getById(Long id) throws RecordNotFoundException {
+        Optional<MedicalHistoryEntity> history = repository.findById(id);
+        if (history.isPresent()) {
+            return history.get();
+        } else {
+            throw new RecordNotFoundException("No history record exist for given id");
+        }
+    }
    /* public void save(UsersEntity usersEntity)
     {
         repository.save(usersEntity);
