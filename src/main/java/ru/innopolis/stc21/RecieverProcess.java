@@ -79,7 +79,7 @@ public class RecieverProcess {
 
         factory.setUsername("guest");
         factory.setPassword("guest");
-        factory.setHost("localhost");
+        factory.setHost("medbrat.ml");
         factory.setPort(5672);
         factory.setVirtualHost("/");
         Connection connection = factory.newConnection();
